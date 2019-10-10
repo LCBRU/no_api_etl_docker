@@ -2,7 +2,7 @@ FROM python:3.6
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client vim && \
     apt-get clean
 
 RUN mkdir -p /usr/src/app
