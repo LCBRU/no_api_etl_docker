@@ -8,7 +8,7 @@ RUN apt-get update && \
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN echo "2010-05-20 B"
+RUN echo "2010-05-20 C"
 
 RUN svn export --force https://github.com/LCBRU/no_api_etl/trunk/ /usr/src/app/
 
