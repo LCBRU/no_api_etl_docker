@@ -1,14 +1,18 @@
-FROM python:3.6
+FROM python:3.7
 
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client vim && \
-    apt-get clean
+RUN apt-get update \
+&&  apt-get -y upgrade \
+&&  DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client vim \
+&& ACCEPT_EULA=Y apt-get -y install --no-install-recommends \
+    msodbcsql17 \
+    mssql-tools \
+    unixodbc-dev \
+&&  apt-get clean
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN echo "2010-05-20 C"
+RUN echo "2010-05-28 A"
 
 RUN svn export --force https://github.com/LCBRU/no_api_etl/trunk/ /usr/src/app/
 
