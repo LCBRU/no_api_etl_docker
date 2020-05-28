@@ -16,12 +16,14 @@ RUN apt-get update \
     msodbcsql17 \
     mssql-tools \
     unixodbc-dev \
+&& sed -i 's,^\(MinProtocol[ ]*=\).*,\1'TLSv1.0',g' /etc/ssl/openssl.cnf \
+&& sed -i 's,^\(CipherString[ ]*=\).*,\1'DEFAULT@SECLEVEL=1',g' /etc/ssl/openssl.cnf\
 && apt-get clean
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN echo "2010-05-28 A"
+RUN echo "2010-05-28 B"
 
 RUN svn export --force https://github.com/LCBRU/no_api_etl/trunk/ /usr/src/app/
 
