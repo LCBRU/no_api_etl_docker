@@ -1,13 +1,22 @@
 FROM python:3.7
 
 RUN apt-get update \
-&&  apt-get -y upgrade \
-&&  DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client vim \
+&& apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+&& curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+&& curl https://packages.microsoft.com/config/debian/9/prod.list  > /etc/apt/sources.list.d/mssql-release.list \
+&& apt-get update \
+&& ACCEPT_EULA=Y apt-get -y install --no-install-recommends \
+    default-mysql-client \
+    libsasl2-dev \
 && ACCEPT_EULA=Y apt-get -y install --no-install-recommends \
     msodbcsql17 \
     mssql-tools \
     unixodbc-dev \
-&&  apt-get clean
+&& apt-get clean
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
