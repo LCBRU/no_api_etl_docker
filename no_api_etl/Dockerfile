@@ -23,7 +23,7 @@ RUN apt-get update \
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN echo "2010-09-11 B"
+RUN echo "2010-09-12 A"
 
 RUN svn export --force https://github.com/LCBRU/no_api_etl/trunk/ /usr/src/app/
 
