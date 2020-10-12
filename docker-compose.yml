@@ -3,5 +3,8 @@ version: '3'
 services:
   no_api_etl:
     restart: always
-    build: ./no_api_etl
+    build:
+      context: ./no_api_etl
+      args:
+        version: ${VERSION}
     env_file: .env

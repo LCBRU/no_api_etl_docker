@@ -1,5 +1,7 @@
 FROM python:3.7
 
+ARG version
+
 RUN apt-get update \
 && apt-get install -y \
     apt-transport-https \
@@ -23,7 +25,7 @@ RUN apt-get update \
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN echo "2010-10-12 A"
+RUN echo "$version"
 
 RUN svn export --force https://github.com/LCBRU/no_api_etl/trunk/ /usr/src/app/
 
